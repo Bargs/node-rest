@@ -14,6 +14,11 @@ app.use(bodyParser());
 
 var port = process.env.PORT || 8080; 		// set our port
 
+var mongoose   = require('mongoose');
+mongoose.connect('mongodb://localhost:27017'); // connect to our database
+
+var Bear       = require('./app/models/bear');
+
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router(); 				// get an instance of the express Router
