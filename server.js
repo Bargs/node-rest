@@ -143,19 +143,22 @@ router.route('/actors/:actor_id')
             .error(function (err) {
                 console.log('An error occurred while searching for actor:', err);
             });
+    })
+
+    // delete the bear with this id (accessed at DELETE http://localhost:8080/api/bears/:bear_id)
+    .delete(function(req, res) {
+
+        Actor
+            .destroy( { actor_id: req.params.actor_id } )
+
+            .success(function () {
+                res.json({ message: 'Successfully deleted' });
+            })
+
+            .error(function () {
+                console.log('An error occurred: ', err);
+            });
     });
-//
-//    // delete the bear with this id (accessed at DELETE http://localhost:8080/api/bears/:bear_id)
-//    .delete(function(req, res) {
-//        Bear.remove({
-//            _id: req.params.bear_id
-//        }, function(err, bear) {
-//            if (err)
-//                res.send(err);
-//
-//            res.json({ message: 'Successfully deleted' });
-//        });
-//    });
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
