@@ -74,20 +74,24 @@ router.get('/', function(req, res) {
 router.route('/actors')
 
     // create an actor (accessed at POST http://localhost:8080/api/actors)
-//    .post(function(req, res) {
-//
-//        var bear = new Bear(); 		// create a new instance of the Bear model
-//        bear.name = req.body.name;  // set the bears name (comes from the request)
-//
-//        // save the bear and check for errors
-//        bear.save(function(err) {
-//            if (err)
-//                res.send(err);
-//
-//            res.json({ message: 'Bear created!' });
-//        });
-//
-//    })
+    .post(function(req, res) {
+
+        var actor = Actor.build({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name
+        });
+
+        actor
+            .save()
+            .complete(function(err) {
+                if (!!err) {
+                    console.log('The instance has not been saved:', err);
+                } else {
+                    console.log('We have a persisted actor now');
+                    res.json({ message: 'Actor created!' });
+                }
+            });
+    })
 
     // get all the actors (accessed at GET http://localhost:8080/api/actors)
     .get(function(req, res) {
