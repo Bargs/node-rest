@@ -15,7 +15,7 @@ app.use(bodyParser());
 var port = process.env.PORT || 8080; 		// set our port
 
 var Sequelize = require("sequelize");
-var sequelize = new Sequelize('dvdrental', 'postgres', 'password', {
+var sequelize = new Sequelize('dvdrental', 'postgres', 'postgres', {
     dialect: 'postgres',
     port:    5432
 });
